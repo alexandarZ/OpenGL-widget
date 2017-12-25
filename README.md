@@ -5,6 +5,4 @@ QT OpenGL widget
 * Floor grid
 * XYZ axix lines
 
-**Windows** - Replace in project file -lGL with -lopengl32 !
-
 ![promisechains](https://github.com/alexandarZ/OpenGL-widget/blob/master/Screenshot.png)

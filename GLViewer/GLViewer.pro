@@ -11,7 +11,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = GLViewer
 TEMPLATE = app
 
-LIBS += -lGL
+win32:LIBS += -lopengl32
+ unix:LIBS += -lGL
 
 SOURCES += main.cpp\
         mainwindow.cpp \
