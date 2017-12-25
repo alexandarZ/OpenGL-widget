@@ -6,7 +6,6 @@
 #include <QMouseEvent>
 #include <QOpenGLFunctions>
 #include <QVector>
-#include <QDebug>
 
 typedef struct
 {
@@ -14,13 +13,17 @@ typedef struct
     GLfloat rotX,rotY,rotZ;
     QPoint  lastPos;
 }
-Camera;
+Camera_t;
 
 class MOpenGLWidget : public QGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
+
 public:
-    explicit MOpenGLWidget(QWidget *parent=0);
+    explicit MOpenGLWidget(QWidget *parent = nullptr);
+
+signals:
+    void updateCameraLocationStatus(QString);
 
 protected:
 
@@ -32,22 +35,14 @@ protected:
     void mouseMoveEvent(QMouseEvent* event);
     void wheelEvent(QWheelEvent* event);
 
+    void setFrustum(GLdouble fovY,GLdouble aspect, GLdouble zNear, GLdouble zFar);
+
+    void drawFloorGrid(float size, float step);
+    void drawAxis(GLfloat axisLength);
+    void drawBox(GLfloat size);
+
 private:
-
-    void drawFloorGrid(GLfloat size);
-    void drawXYZ(GLfloat axisLength);
-    Camera cam;
-
-signals:
-
-public slots:
-
-void setCameraFront();
-void setCameraBack();
-void setCameraTop();
-void setCameraBottom();
-void setCameraDefault();
-
+    Camera_t m_camera;
 };
 
 #endif // MOPENGLWIDGET_H
